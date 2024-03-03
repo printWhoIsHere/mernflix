@@ -9,7 +9,7 @@ import NavItems from '@/components/layout/NavItems'
 import MobileNav from '@/components/layout/MobileNav'
 import { ProfileMenu } from '@/components/layout/ProfileMenu'
 
-const isLogged = false
+const isLogged = true
 
 const Header = () => {
 	const router = useRouter()
