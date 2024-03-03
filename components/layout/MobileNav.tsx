@@ -14,13 +14,12 @@ import { Separator } from '@/components/ui/separator'
 import {
 	Sheet,
 	SheetContent,
-	SheetDescription,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
 } from '@/components/ui/sheet'
 
-const MobileNav = () => {
+export const MobileNav = () => {
 	const pathname = usePathname()
 
 	return (
@@ -67,5 +66,3 @@ const MobileNav = () => {
 		</nav>
 	)
 }
-
-export default MobileNav

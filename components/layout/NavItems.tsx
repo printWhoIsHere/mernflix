@@ -15,7 +15,7 @@ import {
 	navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
-const NavItems = () => {
+export const NavItems = () => {
 	const pathname = usePathname()
 
 	return (
@@ -39,8 +39,6 @@ const NavItems = () => {
 		</NavigationMenu>
 	)
 }
-
-export default NavItems
 
 const ListItem = React.forwardRef<
 	React.ElementRef<'a'>,

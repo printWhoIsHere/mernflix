@@ -1,3 +1,5 @@
+'use client'
+
 import { User } from 'lucide-react'
 
 import { ToggleMode } from '@/components/toggle-mode'

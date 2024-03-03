@@ -5,13 +5,13 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
-import NavItems from '@/components/layout/NavItems'
-import MobileNav from '@/components/layout/MobileNav'
+import { NavItems } from '@/components/layout/NavItems'
+import { MobileNav } from '@/components/layout/MobileNav'
 import { ProfileMenu } from '@/components/layout/ProfileMenu'
 
 const isLogged = true
 
-const Header = () => {
+export const Header = () => {
 	const router = useRouter()
 
 	const handleClick = () => {
@@ -49,5 +49,3 @@ const Header = () => {
 		</header>
 	)
 }
-
-export default Header
