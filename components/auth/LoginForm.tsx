@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { login } from '@/actions/auth'
+import { login } from '@/actions/login'
 
 import { LoginSchema } from '@/schemas'
 import { FormError } from '@/components/form-error'
@@ -50,8 +50,7 @@ export const LoginForm = () => {
 		startTransition(() => {
 			login(values).then((data) => {
 				setError(data?.error)
-				// TODO: Add 2FA
-				// setSuccess(data?.success)
+				setSuccess(data?.success)
 			})
 		})
 	}

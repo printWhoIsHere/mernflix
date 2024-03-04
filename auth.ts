@@ -19,16 +19,23 @@ export const {
 	events: {
 		async linkAccount({ user }) {
 			await db.user.update({
-				where: {
-					id: user.id,
-				},
-				data: {
-					emailVerified: new Date(),
-				},
+				where: { id: user.id },
+				data: { emailVerified: new Date() },
 			})
 		},
 	},
 	callbacks: {
+		async signIn({ user, account }) {
+			if (!user.id || account?.provider !== 'credentials') return true
+
+			const existingUser = await getUserById(user.id)
+
+			if (!existingUser?.emailVerified) return false
+
+			// TODO: 2FA
+
+			return true
+		},
 		async session({ token, session }) {
 			if (token.sub && session.user) {
 				session.user.id = token.sub
