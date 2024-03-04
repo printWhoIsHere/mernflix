@@ -6,7 +6,7 @@ import { AuthError } from 'next-auth'
 
 import { signIn } from '@/auth'
 import { db } from '@/lib/database'
-import { getUserByEmail } from '@/actions/users'
+import { getUserByEmail } from '@/data/user'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 import { LoginSchema, RegisterSchema } from '@/schemas'
 
