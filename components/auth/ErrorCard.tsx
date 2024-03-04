@@ -4,8 +4,8 @@ export const ErrorCard = () => {
 	return (
 		<CardWrapper
 			label='Oops! Somehint went wrong!'
-			backButtonLabel='/auth/login'
-			backButtonHref='Back to login'
+			backButtonLabel='Back to login'
+			backButtonHref='/auth/login'
 		>
 			<div className='w-full flex-center'></div>
 		</CardWrapper>
