@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 
 import { db } from '@/lib/database'
 import { RegisterSchema } from '@/schemas'
-import { getUserByEmail } from '@/data/user'
+import { getUserByEmail } from '@/lib/database/data/user'
 import { sendVerificationEmail } from '@/lib/mail'
 import { generateVerificationToken } from '@/lib/tokens'
 

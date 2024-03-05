@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+import { backToLogin } from '@/actions/back-to-login'
+
 import { newVerification } from '@/actions/new-verification'
 import { CardWrapper } from '@/components/auth/CardWrapper'
 import { Loader } from '@/components/loader'
@@ -27,6 +29,11 @@ export const NewVerificationForm = () => {
 			.then((data) => {
 				setError(data.error)
 				setSuccess(data.success)
+				if (data?.error) {
+					setTimeout(() => {
+						backToLogin()
+					}, 2000)
+				}
 			})
 			.catch(() => {
 				setError('Something went wrong!')

@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import { UserRole } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 
-import { getUserById } from '@/data/user'
+import { getUserById } from '@/lib/database/data/user'
 import { db } from '@/lib/database'
 import authConfig from '@/auth.config'
 

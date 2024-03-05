@@ -2,10 +2,12 @@
 
 import * as z from 'zod'
 
+import Link from 'next/link'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Eye, EyeOff } from 'lucide-react'
 
 import { login } from '@/actions/login'
 
@@ -34,6 +36,8 @@ export const LoginForm = () => {
 	const [error, setError] = useState<string | undefined>('')
 	const [success, setSuccess] = useState<string | undefined>('')
 	const [isPending, startTransition] = useTransition()
+
+	const [visible, setVisible] = useState(false)
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
@@ -89,14 +93,30 @@ export const LoginForm = () => {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											disabled={isPending}
-											placeholder='******'
-											type='password'
-										/>
-									</FormControl>
+									<div className='relative flex-center'>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={isPending}
+												placeholder='******'
+												type={visible ? 'text' : 'password'}
+											/>
+										</FormControl>
+										<div
+											className='absolute right-2 cursor-pointer p-1 rounded-md hover:bg-primary/20 text-black/20 dark:text-white/20'
+											onClick={() => setVisible(!visible)}
+										>
+											{visible ? <Eye /> : <EyeOff />}
+										</div>
+									</div>
+									<Button
+										size='sm'
+										variant='link'
+										asChild
+										className='px-0 font-normal'
+									>
+										<Link href='/auth/reset'>Forgot password?</Link>
+									</Button>
 									<FormMessage />
 								</FormItem>
 							)}

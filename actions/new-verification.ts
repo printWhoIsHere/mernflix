@@ -1,8 +1,8 @@
 'use server'
 
 import { db } from '@/lib/database'
-import { getUserByEmail } from '@/data/user'
-import { getVerificationTokenByToken } from '@/data/verification-token'
+import { getUserByEmail } from '@/lib/database/data/user'
+import { getVerificationTokenByToken } from '@/lib/database/data/verification-token'
 
 export const newVerification = async (token: string) => {
 	const existingToken = await getVerificationTokenByToken(token)
