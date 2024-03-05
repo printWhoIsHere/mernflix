@@ -7,11 +7,11 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { NavItems } from '@/components/layout/NavItems'
 import { MobileNav } from '@/components/layout/MobileNav'
-import { ProfileMenu } from '@/components/layout/ProfileMenu'
-
-const isLogged = true
+import { UserButton } from '@/components/auth/UserButton'
+import { useSession } from 'next-auth/react'
 
 export const Header = () => {
+	const { data: status } = useSession()
 	const router = useRouter()
 
 	const handleClick = () => {
@@ -36,8 +36,8 @@ export const Header = () => {
 				</nav>
 
 				<div className='w-32 flex justify-end gap-3'>
-					{isLogged ? (
-						<ProfileMenu />
+					{status ? (
+						<UserButton />
 					) : (
 						<Button onClick={handleClick} size='lg'>
 							Login
