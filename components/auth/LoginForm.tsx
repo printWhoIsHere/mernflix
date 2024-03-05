@@ -3,9 +3,9 @@
 import * as z from 'zod'
 
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSearchParams } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff } from 'lucide-react'
 
@@ -28,9 +28,10 @@ import { CardWrapper } from '@/components/auth/CardWrapper'
 
 export const LoginForm = () => {
 	const searchParams = useSearchParams()
+	const callbackUrl = searchParams.get('callbackUrl')
 	const urlError =
 		searchParams.get('error') === 'OAuthAccountNotLinked'
-			? 'Email already in use with different povider!'
+			? 'Email already in use with different provider!'
 			: ''
 
 	const [error, setError] = useState<string | undefined>('')
@@ -52,10 +53,19 @@ export const LoginForm = () => {
 		setSuccess('')
 
 		startTransition(() => {
-			login(values).then((data) => {
-				setError(data?.error)
-				setSuccess(data?.success)
-			})
+			login(values)
+				.then((data) => {
+					if (data?.error) {
+						form.reset()
+						setError(data.error)
+					}
+
+					if (data?.success) {
+						form.reset()
+						setSuccess(data.success)
+					}
+				})
+				.catch(() => setError('Something went wrong'))
 		})
 	}
 
