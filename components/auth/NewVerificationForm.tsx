@@ -29,7 +29,7 @@ export const NewVerificationForm = () => {
 			.then((data) => {
 				setError(data.error)
 				setSuccess(data.success)
-				if (data?.error) {
+				if (data?.success) {
 					setTimeout(() => {
 						backToLogin()
 					}, 2000)
